@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>USSD Transaction</title>
+</head>
+<body>
+
+    <h3>Bank USSD Transaction</h3>
+
+    <script>
+        function displayMainMenu() {
+            alert('Welcome to MTN USSD Service!');
+            
+            const userInput = prompt(`Choose an option:\na) Buy Data Plans\nb) Recharge\nc) Borrow Airtime\nd) Check Data Balance\ne) Check Account Balance`);
+            
+            if (userInput === 'a') {
+                buyData();
+            } else if (userInput === 'b') {
+                recharge();
+            } else if (userInput === 'c') {
+                borrowAirtime();
+            } else if (userInput === 'd') {
+                checkDataBalance();
+            } else if (userInput === 'e') {
+                checkAccountBalance();
+            } else {
+                alert('Invalid option. Please select a valid option.');
+                displayMainMenu();
+            }
+        }
+        
+        function buyData() {
+            const dataAmount = parseFloat(prompt('Enter the amount of data you want to buy:'));
+            
+            if (isNaN(dataAmount) || dataAmount <= 0) {
+                alert('Invalid data amount. Please enter a valid amount.');
+                buyData();
+            } else {
+                alert(`You have successfully purchased ${dataAmount} MB of data.`);
+                thankYouMessage();
+            }
+        }
+        
+        function recharge() {
+            const airtimeAmount = parseFloat(prompt('Enter the amount of airtime you want to buy:'));
+            
+            if (isNaN(airtimeAmount) || airtimeAmount <= 0) {
+                alert('Invalid airtime amount. Please enter a valid amount.');
+                recharge();
+            } else {
+                alert(`You have successfully recharged $${airtimeAmount} airtime.`);
+                thankYouMessage();
+            }
+        }
+        
+        function borrowAirtime() {
+            const borrowedAirtimeAmount = parseFloat(prompt('Enter the amount of airtime you want to borrow:'));
+            
+            if (isNaN(borrowedAirtimeAmount) || borrowedAirtimeAmount <= 0) {
+                alert('Invalid borrowed airtime amount. Please enter a valid amount.');
+                borrowAirtime();
+            } else {
+                alert(`You have successfully borrowed $${borrowedAirtimeAmount} airtime.`);
+                thankYouMessage();
+            }
+        }
+        
+        function checkDataBalance() {
+            alert(`Your data balance is 2,000 MB.`);
+            thankYouMessage();
+        }
+        
+        function checkAccountBalance() {
+            alert(`Your account balance is $2,000.`);
+            thankYouMessage();
+        }
+        
+        function thankYouMessage() {
+            alert('Thank you for using MTN USSD Service!');
+        }
+        
+        displayMainMenu();
+    </script>
+</body>
+</html>

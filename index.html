@@ -1,85 +1,186 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>USSD Transaction</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+      
+
+      body{
+        background: url(./img/MTN-Group-metaverse-1.png);
+
+        /* Button Styling */
+      }
+      button{
+        margin: auto;
+        margin-top: 250px;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        background-color: #FFCC03;
+      }
+
+      button:hover{
+        background-color: cornflowerblue;
+      }
+    </style>
+
+
+    <title>Document</title>
 </head>
 <body>
 
-    <h3>Bank USSD Transaction</h3>
+  <!-- Button -->
+  <button onclick="mtnUssd()">Welcome To MTN</button>
 
+  <!-- Javascript -->
     <script>
-        function displayMainMenu() {
-            alert('Welcome to MTN USSD Service!');
-            
-            const userInput = prompt(`Choose an option:\na) Buy Data Plans\nb) Recharge\nc) Borrow Airtime\nd) Check Data Balance\ne) Check Account Balance`);
-            
-            if (userInput === 'a') {
-                buyData();
-            } else if (userInput === 'b') {
-                recharge();
-            } else if (userInput === 'c') {
-                borrowAirtime();
-            } else if (userInput === 'd') {
-                checkDataBalance();
-            } else if (userInput === 'e') {
-                checkAccountBalance();
+        function mtnUssd() {
+  let mtnCode = prompt("Enter the following code (*311#)");
+
+  if (mtnCode === "*311#") {
+    let options;
+    while (true) {
+      options = prompt(
+        "\n1. Buy Airtime self \n2. Buy Airtime others \n3. Transfer Airtime \n4. Transfer Data \n5. Borrow Airtime/Data"
+      );
+
+      if (options === null) {
+        break; // Exit the loop if the user cancels
+      }
+
+      switch (options) {
+        // BUY AIRTIME SELF
+        case "1":
+          prompt("Enter amount");
+          alert("successful");
+          break;
+
+        // BUY AIRTIME OTHERS
+        case "2":
+          let number = prompt("Enter Third Party Number");
+          if (number.length === 11) {
+            prompt("Enter amount");
+            let pin = prompt("Enter pin");
+            if (pin.length === 4) {
+              alert("Successful");
             } else {
-                alert('Invalid option. Please select a valid option.');
-                displayMainMenu();
+              alert("wrong pin");
             }
-        }
-        
-        function buyData() {
-            const dataAmount = parseFloat(prompt('Enter the amount of data you want to buy:'));
-            
-            if (isNaN(dataAmount) || dataAmount <= 0) {
-                alert('Invalid data amount. Please enter a valid amount.');
-                buyData();
+          } else {
+            alert("Wrong Number");
+          }
+          break;
+
+        // TRANSFER AIRTIME
+        case "3":
+          let acct = prompt("Enter phone number");
+          if (acct.length === 10) {
+            prompt("Enter amount");
+            let pin = prompt("Enter pin");
+            if (pin.length === 4) {
+              alert("processing, you will receive a message shortly");
             } else {
-                alert(`You have successfully purchased ${dataAmount} MB of data.`);
-                thankYouMessage();
+              alert("wrong pin");
             }
-        }
-        
-        function recharge() {
-            const airtimeAmount = parseFloat(prompt('Enter the amount of airtime you want to buy:'));
-            
-            if (isNaN(airtimeAmount) || airtimeAmount <= 0) {
-                alert('Invalid airtime amount. Please enter a valid amount.');
-                recharge();
-            } else {
-                alert(`You have successfully recharged $${airtimeAmount} airtime.`);
-                thankYouMessage();
+          } else {
+            alert("wrong account number");
+          }
+          break;
+
+        // TRANSFER DATA
+        case "4":
+          let select;
+          while (true) {
+            select = prompt(
+              "\n1. 100 \n2. 200  \n3. 300 \n4. 500 \n5. Others"
+            );
+
+            if (select === null) {
+              break; // Exit the inner loop if the user cancels
             }
-        }
-        
-        function borrowAirtime() {
-            const borrowedAirtimeAmount = parseFloat(prompt('Enter the amount of airtime you want to borrow:'));
-            
-            if (isNaN(borrowedAirtimeAmount) || borrowedAirtimeAmount <= 0) {
-                alert('Invalid borrowed airtime amount. Please enter a valid amount.');
-                borrowAirtime();
-            } else {
-                alert(`You have successfully borrowed $${borrowedAirtimeAmount} airtime.`);
-                thankYouMessage();
+
+            switch (select) {
+              case "1":
+              case "2":
+              case "3":
+              case "4":
+                let bacct = prompt("Enter phone number");
+                if (bacct.length === 10) {
+                  prompt("Enter amount");
+                  let pin = prompt("Enter pin");
+                  if (pin.length === 4) {
+                    alert("processing, you will receive a message shortly");
+                  } else {
+                    alert("wrong pin");
+                  }
+                } else {
+                  alert("wrong number");
+                }
+                break;
+
+              case "5":
+                alert(
+                  "You are not eligible to transfer other amounts, try again later"
+                );
+                break;
+
+              default:
+                alert("Invalid selection");
+                break;
             }
-        }
-        
-        function checkDataBalance() {
-            alert(`Your data balance is 2,000 MB.`);
-            thankYouMessage();
-        }
-        
-        function checkAccountBalance() {
-            alert(`Your account balance is $2,000.`);
-            thankYouMessage();
-        }
-        
-        function thankYouMessage() {
-            alert('Thank you for using MTN USSD Service!');
-        }
-        
-        displayMainMenu();
+          }
+          break;
+
+        // BORROW AIRTIME/DATA
+        case "5":
+          let borrow;
+          while (true) {
+            borrow = prompt("\n1. 500 \n2. 1000");
+
+            if (borrow === null) {
+              break; // Exit the inner loop if the user cancels
+            }
+
+            switch (borrow) {
+              case "1":
+                prompt("Enter your phone number");
+                prompt("Enter amount");
+                let pin = prompt("Enter pin");
+                if (pin.length === 4) {
+                  alert("successful");
+                } else {
+                  alert("wrong pin");
+                }
+                break;
+
+              case "2":
+                prompt("Enter your phone Number");
+                prompt("Enter amount");
+                alert(
+                  "Congratulations You have successfully borrowed this amount"
+                );
+                break;
+
+              default:
+                alert("Invalid selection");
+                break;
+            }
+          }
+          break;
+
+        default:
+          alert("Invalid selection");
+          break;
+      }
+    }
+  } else {
+    alert("Please enter the correct USSD for MTN Service.");
+  }
+}
     </script>
 </body>
 </html>
